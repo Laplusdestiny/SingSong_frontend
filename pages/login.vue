@@ -35,7 +35,8 @@ const logIn = async () => {
     error.value = null;
 
     try {
-        await signInWithEmailAndPassword(auth, email.value, password.value);
+        const userCredential = await signInWithEmailAndPassword(auth, email.value, password.value);
+        const user = userCredential.user;
 
         // ユーザー情報をローカルストレージに保存
         localStorage.setItem('auth', 'true');

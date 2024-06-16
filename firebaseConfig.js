@@ -2,14 +2,15 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth } from 'firebase/auth';
 
+const config = useRuntimeConfig();
+
 const firebaseConfig = {
-  apiKey: process.env.API_KEY,
-  authDomain: process.env.API_URL,
-  projectId: process.env.ProjectID,
-  storageBucket: process.env.StorageBucket,
-  messagingSenderId: process.env.MessagingSenderID,
-  appId: process.env.AppID,
-  measurementId: process.env.MeasurementID
+  apiKey: config.public.firebaseApiKey,
+  authDomain: config.public.firebaseAuthDomain,
+  projectId: config.public.firebaseProjectId,
+  storageBucket: config.public.firebaseStorageBucket,
+  messagingSenderId: config.public.firebaseMessagingSenderId,
+  appId: config.public.firebaseAppId
 };
 
 // Initialize Firebase
