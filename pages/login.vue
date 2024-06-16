@@ -3,7 +3,7 @@
         <v-card max-width="500" class="mx-auto">
             <v-card-actions>
                 <v-col>
-                    <v-text-field v-model="name" type="text" label="Name"></v-text-field>
+                    <v-text-field v-model="email" type="email" label="Email"></v-text-field>
                     <v-text-field v-model="password" type="password" label="Password"></v-text-field>
                     <v-btn color="primary" @click="logIn" :disabled="loading">
                         <span v-if="!loading">Login</span>
@@ -20,11 +20,11 @@
 
 <script setup>
 import { ref } from 'vue';
-import axios from 'axios';
-import bcrypt from 'bcryptjs';
 import { useRouter } from 'vue-router';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../firebaseConfig';
 
-const name = ref('');
+const email = ref('');
 const password = ref('');
 const error = ref(null);
 const loading = ref(false);
@@ -35,27 +35,18 @@ const logIn = async () => {
     error.value = null;
 
     try {
-        // ユーザー情報の取得
-        const response = await axios.get(`http://localhost:3050/users?name=${name.value}`);
-        if (response.data.length === 0) {
-            error.value = 'Invalid name or password';
-            loading.value = false;
-            return;
-        }
+        await signInWithEmailAndPassword(auth, email.value, password.value);
 
-        const user = response.data[0];
-        const isValidPassword = await bcrypt.compare(password.value, user.password);
+        // ユーザー情報をローカルストレージに保存
+        localStorage.setItem('auth', 'true');
+        localStorage.setItem('user', JSON.stringify({
+            uid: user.uid
+        }));
 
-        if (isValidPassword) {
-            // ユーザー情報をローカルストレージに保存
-            localStorage.setItem('auth', 'true');
-            localStorage.setItem('user', JSON.stringify(user));
-            router.push('/mypage');
-        } else {
-            error.value = 'Invalid name or password';
-        }
+        router.push('/mypage');
     } catch (err) {
-        error.value = 'An error occurred during login';
+        error.value = 'Invalid email or password';
+        localStorage.setItem('auth', 'false')
     } finally {
         loading.value = false;
     }
