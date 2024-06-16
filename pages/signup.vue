@@ -78,6 +78,10 @@ const signUp = async () => {
         loading.value = false;
     }
 };
+
+useHead({
+    title: 'SignUp - SingSong'
+})
 </script>
 
 <style scoped>

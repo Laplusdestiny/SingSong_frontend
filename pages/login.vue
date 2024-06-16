@@ -51,6 +51,10 @@ const logIn = async () => {
         loading.value = false;
     }
 };
+
+useHead({
+    title: 'Login - SingSong'
+})
 </script>
 
 <style scoped>

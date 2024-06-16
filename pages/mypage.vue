@@ -20,6 +20,10 @@ onMounted(() => {
         user.value = JSON.parse(storedUser);
     }
 });
+
+useHead({
+    title: 'MyPage - SingSong'
+})
 </script>
 
 <style scoped>

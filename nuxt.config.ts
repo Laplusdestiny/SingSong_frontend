@@ -31,4 +31,23 @@ export default defineNuxtConfig({
       },
     },
   },
+  app: {
+    head: {
+      htmlAttrs: {
+        lang: 'ja',
+      },
+      meta: [
+        { name: 'description', content: 'あなたのカラオケライフをもっと楽しく、もっと便利に' },
+        { property: 'og:title', content: 'SingSong' },
+        { property: 'og:description', content: 'あなたのカラオケライフをもっと楽しく、もっと便利に' },
+        { property: 'og:image', content: 'public/icon.webp' },
+        { property: 'og:url', content: 'https://sing-song-frontend.vercel.app/' },
+        { property: 'og:type', content: 'website' },
+        { name: 'twitter:card', content: 'summary_large_image' },
+        { name: 'twitter:title', content: 'SingSong' },
+        { name: 'twitter:description', content: 'あなたのカラオケライフをもっと楽しく、もっと便利に' },
+        { name: 'twitter:image', content: 'public/icon.webp' }
+      ],
+    }
+  }
 })
