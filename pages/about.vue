@@ -50,6 +50,12 @@
     </div>
 </template>
 
+<script setup lang="ts">
+useHead({
+    title: 'About - SingSong'
+})
+</script>
+
 <style scoped>
 .background-container {
     position: relative;

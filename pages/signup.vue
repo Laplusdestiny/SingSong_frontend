@@ -3,7 +3,7 @@
         <v-card max-width="500" class="mx-auto">
             <v-card-actions>
                 <v-col>
-                    <v-text-field v-model="name" type="text" label="Name"></v-text-field>
+                    <v-text-field v-model="email" type="email" label="Email"></v-text-field>
                     <v-text-field v-model="password" :error-messages="passwordErrors" type="password"
                         label="Password"></v-text-field>
                     <v-text-field v-model="retypePassword" :error-messages="retypePasswordErrors" type="password"
@@ -27,11 +27,11 @@
 
 <script setup>
 import { ref, computed } from 'vue';
-import axios from 'axios';
-import bcrypt from 'bcryptjs';
 import { useRouter } from 'vue-router';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../firebaseConfig';
 
-const name = ref('');
+const email = ref('');
 const password = ref('');
 const retypePassword = ref('');
 const error = ref(null);
@@ -65,23 +65,7 @@ const signUp = async () => {
     success.value = null;
 
     try {
-        // 既存のユーザーを確認
-        const response = await axios.get(`http://localhost:3050/users?name=${name.value}`);
-        if (response.data.length > 0) {
-            error.value = 'このユーザー名は既に使用されています';
-            loading.value = false;
-            return;
-        }
-
-        // パスワードのハッシュ化
-        const hashedPassword = await bcrypt.hash(password.value, 10);
-
-        // 新しいユーザーを追加
-        await axios.post('http://localhost:3050/users', {
-            name: name.value,
-            password: hashedPassword
-        });
-
+        await createUserWithEmailAndPassword(auth, email.value, password.value);
         success.value = 'ユーザー登録が成功しました！';
 
         // 5秒後にログインページにリダイレクト
@@ -89,11 +73,15 @@ const signUp = async () => {
             router.push('/login');
         }, 5000);
     } catch (err) {
-        error.value = 'サインアップ中にエラーが発生しました';
+        error.value = 'サインアップ中にエラーが発生しました: ' + err.message;
     } finally {
         loading.value = false;
     }
 };
+
+useHead({
+    title: 'SignUp - SingSong'
+})
 </script>
 
 <style scoped>

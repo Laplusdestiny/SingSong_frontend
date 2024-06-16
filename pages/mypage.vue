@@ -3,7 +3,7 @@
         <v-card max-width="500" class="mx-auto">
             <v-card-text>
                 <h1>Welcome to your My Page!</h1>
-                <p v-if="user">User Name: {{ user.name }}</p>
+                <p v-if="user">User UID: {{ user.uid }}</p>
             </v-card-text>
         </v-card>
     </v-container>
@@ -20,6 +20,10 @@ onMounted(() => {
         user.value = JSON.parse(storedUser);
     }
 });
+
+useHead({
+    title: 'MyPage - SingSong'
+})
 </script>
 
 <style scoped>
