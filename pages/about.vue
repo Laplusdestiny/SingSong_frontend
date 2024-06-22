@@ -97,7 +97,7 @@ useHead({
 }
 
 .content {
-    padding: 2rem;
+    padding: 64px 2rem 2rem 2rem;
     width: 100%;
     max-width: 800px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
