@@ -74,27 +74,12 @@ const logout = () => {
   align-items: center;
 }
 
-@media (max-width: 600px) {
-  v-main {
-    padding-top: 56px;
-    /* モバイル向けに調整 */
-  }
-
-  .v-app-bar {
-    height: 56px;
-    z-index: 1000;
-  }
+v-main {
+  padding-top: 64px;
 }
 
-@media (min-width: 601px) {
-  v-main {
-    padding-top: 64px;
-    /* デスクトップ向けに調整 */
-  }
-
-  .v-app-bar {
-    height: 64px;
-    /* z-index: 1000; */
-  }
+.v-app-bar {
+  height: 64px;
+  z-index: 1000;
 }
 </style>
