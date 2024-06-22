@@ -41,7 +41,7 @@
                 <blockquote>「このサイトのおかげで、いつも最高の曲を選べるようになりました！」</blockquote>
                 <blockquote>「歌いやすい曲がすぐに見つかるので、カラオケがもっと楽しくなりました！」</blockquote>
             </section>
-            <section>
+            <section v-if="!isAuthenticated">
                 <h2>今すぐ始める</h2>
                 <p>簡単登録、無料で始められます。今すぐアカウント作成！</p>
                 <v-btn to="/signup">Sign up</v-btn>
@@ -51,9 +51,17 @@
 </template>
 
 <script setup lang="ts">
+import { ref, onMounted } from 'vue';
+
+const isAuthenticated = ref(false);
+
+onMounted(() => {
+    isAuthenticated.value = !!localStorage.getItem('auth');
+});
+
 useHead({
     title: 'About - SingSong'
-})
+});
 </script>
 
 <style scoped>
