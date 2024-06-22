@@ -44,7 +44,7 @@
             <section>
                 <h2>今すぐ始める</h2>
                 <p>簡単登録、無料で始められます。今すぐアカウント作成！</p>
-                <button>Sign up</button>
+                <v-btn to="/signup">Sign up</v-btn>
             </section>
         </div>
     </div>
@@ -62,16 +62,15 @@ useHead({
     background-image: url('/static/background.webp');
     background-size: cover;
     background-position: center;
+    background-attachment: fixed;
+    padding-top: 64px;
     height: 100vh;
-    /* 画面の高さ全体 */
     width: 100%;
-    /* 画面の幅全体 */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     color: white;
-    /* 必要に応じてテキストの色を変更 */
 }
 
 .overlay {
@@ -81,7 +80,6 @@ useHead({
     height: 100%;
     width: 100%;
     background-color: rgba(0, 0, 0, 0.6);
-    /* 透明度を調整 */
     z-index: 1;
 }
 

@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar color="primary">
+    <v-app-bar color="primary" app>
       <v-app-bar-title>
         <v-btn to="/">
           <v-icon icon="mdi-music"></v-icon>
@@ -72,5 +72,29 @@ const logout = () => {
 .v-app-bar-title {
   display: flex;
   align-items: center;
+}
+
+@media (max-width: 600px) {
+  v-main {
+    padding-top: 56px;
+    /* モバイル向けに調整 */
+  }
+
+  .v-app-bar {
+    height: 56px;
+    z-index: 1000;
+  }
+}
+
+@media (min-width: 601px) {
+  v-main {
+    padding-top: 64px;
+    /* デスクトップ向けに調整 */
+  }
+
+  .v-app-bar {
+    height: 64px;
+    /* z-index: 1000; */
+  }
 }
 </style>
