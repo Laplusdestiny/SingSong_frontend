@@ -82,4 +82,9 @@ v-main {
   height: 64px;
   z-index: 1000;
 }
+
+/* iOS Safariのビュー高さに対応するための設定 */
+:root {
+  --vh: 1vh;
+}
 </style>
