@@ -22,16 +22,14 @@ useHead({
     background-image: url('/static/background.webp');
     background-size: cover;
     background-position: center;
+    background-attachment: fixed;
     height: 100vh;
-    /* 画面の高さ全体 */
     width: 100%;
-    /* 画面の幅全体 */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     color: white;
-    /* 必要に応じてテキストの色を変更 */
 }
 
 .overlay {
@@ -41,7 +39,6 @@ useHead({
     height: 100%;
     width: 100%;
     background-color: rgba(0, 0, 0, 0.6);
-    /* 透明度を調整 */
     z-index: 1;
 }
 

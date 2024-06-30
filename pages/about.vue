@@ -41,19 +41,27 @@
                 <blockquote>「このサイトのおかげで、いつも最高の曲を選べるようになりました！」</blockquote>
                 <blockquote>「歌いやすい曲がすぐに見つかるので、カラオケがもっと楽しくなりました！」</blockquote>
             </section>
-            <section>
+            <section v-if="!isAuthenticated">
                 <h2>今すぐ始める</h2>
                 <p>簡単登録、無料で始められます。今すぐアカウント作成！</p>
-                <button>Sign up</button>
+                <v-btn to="/signup">Sign up</v-btn>
             </section>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
+import { ref, onMounted } from 'vue';
+
+const isAuthenticated = ref(false);
+
+onMounted(() => {
+    isAuthenticated.value = !!localStorage.getItem('auth');
+});
+
 useHead({
     title: 'About - SingSong'
-})
+});
 </script>
 
 <style scoped>
@@ -62,16 +70,15 @@ useHead({
     background-image: url('/static/background.webp');
     background-size: cover;
     background-position: center;
+    background-attachment: fixed;
+    padding-top: 64px;
     height: 100vh;
-    /* 画面の高さ全体 */
     width: 100%;
-    /* 画面の幅全体 */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     color: white;
-    /* 必要に応じてテキストの色を変更 */
 }
 
 .overlay {
@@ -81,7 +88,6 @@ useHead({
     height: 100%;
     width: 100%;
     background-color: rgba(0, 0, 0, 0.6);
-    /* 透明度を調整 */
     z-index: 1;
 }
 
@@ -91,7 +97,7 @@ useHead({
 }
 
 .content {
-    padding: 2rem;
+    padding: 64px 2rem 2rem 2rem;
     width: 100%;
     max-width: 800px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
