@@ -10,6 +10,10 @@
           <v-icon icon="mdi-information" size="large"></v-icon>
           <v-tooltip activator="parent" location="bottom">About</v-tooltip>
         </v-btn>
+        <v-btn to="/search">
+          <v-icon icon="mdi-magnify" size="large"></v-icon>
+          <v-tooltip activator="parent" location="bottom">Search</v-tooltip>
+        </v-btn>
       </v-app-bar-title>
       <template v-slot:append>
         <template v-if="isAuthenticated">
