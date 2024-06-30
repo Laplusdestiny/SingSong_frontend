@@ -41,6 +41,18 @@
                                     <v-list-item-subtitle>{{ selectedSong.release_date }}</v-list-item-subtitle>
                                 </v-list-item-content>
                             </v-list-item>
+                            <v-list-item>
+                                <v-list-item-content>
+                                    <v-list-item-title>作詞家</v-list-item-title>
+                                    <v-list-item-subtitle>{{ selectedSong.writer }}</v-list-item-subtitle>
+                                </v-list-item-content>
+                            </v-list-item>
+                            <v-list-item>
+                                <v-list-item-content>
+                                    <v-list-item-title>作曲家</v-list-item-title>
+                                    <v-list-item-subtitle>{{ selectedSong.composer }}</v-list-item-subtitle>
+                                </v-list-item-content>
+                            </v-list-item>
                         </v-list>
                     </v-card-text>
                     <v-card-actions>
@@ -62,9 +74,9 @@ useHead({
 
 const searchQuery = ref('');
 const songs = ref([
-    { title: 'らいおんハート', artist: 'TOKIO', album: 'TOK10', release_date: '2001-01-01' },
-    { title: 'WAになっておどろう', artist: 'TOKIO', album: 'TOK10', release_date: '2001-03-01' },
-    { title: 'A・RA・SHI', artist: '嵐', album: 'A・RA・SHI', release_date: '1995-01-01' }
+    { title: 'らいおんハート', artist: 'TOKIO', album: 'TOK10', release_date: '2001-01-01', writer: '野島伸司', composer: 'コモリタミノル' },
+    { title: 'WAになっておどろう', artist: 'TOKIO', album: 'TOK10', release_date: '2001-03-01', writer: '長万部太郎(角松敏生)', composer: '長万部太郎(角松敏生)' },
+    { title: 'A・RA・SHI', artist: '嵐', album: 'A・RA・SHI', release_date: '1995-01-01', writer: 'J&T', composer: '馬飼野康二' }
 ]);
 
 const headers = [
