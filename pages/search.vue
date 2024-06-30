@@ -10,42 +10,75 @@
             <v-row>
                 <v-col cols="12">
                     <v-sheet>
-                        <v-data-table v-model="selected" :headers="headers" :items="filteredSongs" class="elevation-1"
-                            show-select></v-data-table>
+                        <v-data-table :headers="headers" :items="filteredSongs" class="elevation-1">
+                            <template v-slot:[`item.actions`]="{ item }">
+                                <v-btn @click="showDetails(item)">詳細</v-btn>
+                            </template>
+                        </v-data-table>
                     </v-sheet>
                 </v-col>
             </v-row>
+            <v-dialog v-model="dialog" max-width="500">
+                <v-card>
+                    <v-card-title>{{ selectedSong.title }}</v-card-title>
+                    <v-card-text>
+                        <v-list>
+                            <v-list-item>
+                                <v-list-item-content>
+                                    <v-list-item-title>アーティスト</v-list-item-title>
+                                    <v-list-item-subtitle>{{ selectedSong.artist }}</v-list-item-subtitle>
+                                </v-list-item-content>
+                            </v-list-item>
+                            <v-list-item>
+                                <v-list-item-content>
+                                    <v-list-item-title>アルバム</v-list-item-title>
+                                    <v-list-item-subtitle>{{ selectedSong.album }}</v-list-item-subtitle>
+                                </v-list-item-content>
+                            </v-list-item>
+                            <v-list-item>
+                                <v-list-item-content>
+                                    <v-list-item-title>リリース日</v-list-item-title>
+                                    <v-list-item-subtitle>{{ selectedSong.release_date }}</v-list-item-subtitle>
+                                </v-list-item-content>
+                            </v-list-item>
+                        </v-list>
+                    </v-card-text>
+                    <v-card-actions>
+                        <v-spacer></v-spacer>
+                        <v-btn color="primary" @click="dialog = false">閉じる</v-btn>
+                    </v-card-actions>
+                </v-card>
+            </v-dialog>
         </v-sheet>
     </v-container>
 </template>
 
 <script setup lang="ts">
-// import { ref } from 'vue';
+import { ref, computed } from 'vue';
 
 useHead({
     title: 'Search - SingSong'
-})
+});
 
 const searchQuery = ref('');
-// const songs = ref([]);
 const songs = ref([
-    { id: 48357, title: 'らいおんハート', artist: 'TOKIO', album: 'TOK10' },
-    { id: 48893, title: 'WAになっておどろう', artist: 'TOKIO', album: 'TOK10' },
-    { id: 20965, title: 'A・RA・SHI', artist: '嵐', album: 'A・RA・SHI' },
-])
+    { title: 'らいおんハート', artist: 'TOKIO', album: 'TOK10', release_date: '2001-01-01' },
+    { title: 'WAになっておどろう', artist: 'TOKIO', album: 'TOK10', release_date: '2001-03-01' },
+    { title: 'A・RA・SHI', artist: '嵐', album: 'A・RA・SHI', release_date: '1995-01-01' }
+]);
+
 const headers = [
-    { text: 'タイトル', value: 'title' },
-    { text: 'アーティスト', value: 'artist' },
-    { text: 'アルバム', value: 'album' },
+    { title: 'タイトル', value: 'title', sortable: true },
+    { title: 'アーティスト', value: 'artist', sortable: true },
+    { title: 'アルバム', value: 'album', sortable: true },
+    { title: 'アクション', value: 'actions', sortable: false }
 ];
+
 const maxWidth = '80%';
-const selected = ref([])
 
 const filteredSongs = computed(() => {
-    if (!searchQuery.value) {
+    if (!searchQuery.value.trim()) {
         return songs.value;
-    } else if (searchQuery.value === '') {
-        return songs.value
     }
     return songs.value.filter(song =>
         song.title.includes(searchQuery.value) ||
@@ -54,19 +87,16 @@ const filteredSongs = computed(() => {
     );
 });
 
-async function fetchSongs() {
-    if (searchQuery.value === '') {
-        songs.value = [];
-        return;
-    }
+const dialog = ref(false);
+const selectedSong = ref({ title: '', artist: '', album: '', release_date: '' });
 
-    try {
-        const response = await fetch(`https://api.example.com/songs?query=${searchQuery.value}`);
-        const data = await response.json();
-        songs.value = data.songs;
-    } catch (error) {
-        console.error('Error fetching songs:', error);
-    }
+function showDetails(song) {
+    selectedSong.value = song;
+    dialog.value = true;
+}
+
+function fetchSongs() {
+    // デバッグ中は何もしない
 }
 </script>
 
