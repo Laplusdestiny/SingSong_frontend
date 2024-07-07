@@ -37,6 +37,7 @@ export default defineNuxtConfig({
         lang: 'ja',
       },
       meta: [
+        { charset: 'utf-8'},
         { name: 'description', content: 'あなたのカラオケライフをもっと楽しく、もっと便利に' },
         { property: 'og:title', content: 'SingSong' },
         { property: 'og:description', content: 'あなたのカラオケライフをもっと楽しく、もっと便利に' },
@@ -46,7 +47,8 @@ export default defineNuxtConfig({
         { name: 'twitter:card', content: 'summary_large_image' },
         { name: 'twitter:title', content: 'SingSong' },
         { name: 'twitter:description', content: 'あなたのカラオケライフをもっと楽しく、もっと便利に' },
-        { name: 'twitter:image', content: './public/icon.webp' }
+        { name: 'twitter:image', content: './public/icon.webp' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' },
       ],
     }
   },

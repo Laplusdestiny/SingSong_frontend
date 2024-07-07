@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar color="primary">
+    <v-app-bar color="primary" app>
       <v-app-bar-title>
         <v-btn to="/">
           <v-icon icon="mdi-music"></v-icon>
@@ -76,5 +76,19 @@ const logout = () => {
 .v-app-bar-title {
   display: flex;
   align-items: center;
+}
+
+v-main {
+  padding-top: 64px;
+}
+
+.v-app-bar {
+  height: 64px;
+  z-index: 1000;
+}
+
+/* iOS Safariのビュー高さに対応するための設定 */
+:root {
+  --vh: 1vh;
 }
 </style>
