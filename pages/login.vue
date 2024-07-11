@@ -12,6 +12,7 @@
                     <v-alert v-if="error" type="error">
                         {{ error }}
                     </v-alert>
+                    <NuxtLink to="/resetpassword">パスワードを忘れた方はこちら</NuxtLink>
                 </v-col>
             </v-card-actions>
         </v-card>
@@ -20,7 +21,7 @@
 
 <script setup>
 import { ref } from 'vue';
-import { useRouter } from 'vue-router';
+import { RouterLink, useRouter } from 'vue-router';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebaseConfig';
 
