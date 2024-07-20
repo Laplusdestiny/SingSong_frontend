@@ -47,6 +47,7 @@
 <script setup>
 import { ref, watch, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
+import { SpeedInsights } from "@vercel/speed-insights/nuxt";
 
 const isAuthenticated = ref(false);
 const router = useRouter();
