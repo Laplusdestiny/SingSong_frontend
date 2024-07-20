@@ -30,7 +30,8 @@ export default defineNuxtConfig({
         UserAgent: '*',
         Disallow: '/'
       }
-    }]
+    }],
+    '@nuxtjs/seo',
   ],
 
   vite: {
@@ -51,14 +52,14 @@ export default defineNuxtConfig({
         { name: 'description', content: 'あなたのカラオケライフをもっと楽しく、もっと便利に' },
         { property: 'og:title', content: 'SingSong' },
         { property: 'og:description', content: 'あなたのカラオケライフをもっと楽しく、もっと便利に' },
-        { property: 'og:image', content: './public/icon.webp' },
+        { property: 'og:image', content: 'https://sing-song-frontend.vercel.app/icon.webp' },
         { property: 'og:url', content: 'https://sing-song-frontend.vercel.app/' },
         { property: 'og:type', content: 'website' },
         { property: 'og:site_name', content: 'SingSong' },
         { name: 'twitter:card', content: 'summary_large_image' },
         { name: 'twitter:title', content: 'SingSong' },
         { name: 'twitter:description', content: 'あなたのカラオケライフをもっと楽しく、もっと便利に' },
-        { name: 'twitter:image', content: './public/icon.webp' },
+        { name: 'twitter:image', content: 'https://sing-song-frontend.vercel.app/icon.webp' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' },
       ],
     }
@@ -73,6 +74,13 @@ export default defineNuxtConfig({
       firebaseMessagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
       firebaseAppId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
     }
+  },
+  site: {
+    defaultLocale: 'ja',
+    url: 'https://sing-song-frontend.vercel.app/',
+    name: 'SingSong',
+    description: 'あなたのカラオケライフをもっと楽しく、もっと便利に',
+    trailingSlash: true,
   },
 
   compatibilityDate: '2024-07-20'
