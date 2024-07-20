@@ -5,14 +5,16 @@
                 <v-col>
                     <v-text-field v-model="email" type="email" label="Email"></v-text-field>
                     <v-text-field v-model="password" type="password" label="Password"></v-text-field>
-                    <v-btn color="primary" @click="logIn" :disabled="loading">
-                        <span v-if="!loading">Login</span>
-                        <v-progress-circular v-else indeterminate size="24" color="white"></v-progress-circular>
-                    </v-btn>
-                    <v-alert v-if="error" type="error">
+                    <div class="d-flex justify-space-between align-center">
+                        <v-btn color="primary" @click="logIn" :disabled="loading">
+                            <span v-if="!loading">Login</span>
+                            <v-progress-circular v-else indeterminate size="24" color="white"></v-progress-circular>
+                        </v-btn>
+                        <NuxtLink to="/resetpassword" class="text-right">パスワードを忘れた方はこちら</NuxtLink>
+                    </div>
+                    <v-alert v-if="error" type="error" class="mt-3">
                         {{ error }}
                     </v-alert>
-                    <NuxtLink to="/resetpassword">パスワードを忘れた方はこちら</NuxtLink>
                 </v-col>
             </v-card-actions>
         </v-card>
