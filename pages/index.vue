@@ -12,7 +12,7 @@
 
 <script setup lang="ts">
 useHead({
-    title: 'SingSong - あなたのカラオケライフをもっと楽しく、もっと便利に'
+    title: 'Top Page'
 })
 </script>
 

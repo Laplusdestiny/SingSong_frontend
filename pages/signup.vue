@@ -80,7 +80,7 @@ const signUp = async () => {
 };
 
 useHead({
-    title: 'SignUp - SingSong'
+    title: 'SignUp'
 })
 </script>
 

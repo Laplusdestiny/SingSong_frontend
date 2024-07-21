@@ -45,6 +45,10 @@ const resetPassword = async () => {
         loading.value = false;
     }
 };
+
+useHead({
+    title: 'Reset password'
+})
 </script>
 
 <style scoped>
