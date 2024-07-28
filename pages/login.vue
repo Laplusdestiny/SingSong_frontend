@@ -10,7 +10,7 @@
                             <span v-if="!loading">Login</span>
                             <v-progress-circular v-else indeterminate size="24" color="white"></v-progress-circular>
                         </v-btn>
-                        <NuxtLink to="/resetpassword" class="text-right">パスワードを忘れた方はこちら</NuxtLink>
+                        <NuxtLink to="/resetpassword" class="text-right">Reset password</NuxtLink>
                     </div>
                     <v-alert v-if="error" type="error" class="mt-3">
                         {{ error }}
@@ -57,7 +57,7 @@ const logIn = async () => {
 };
 
 useHead({
-    title: 'Login - SingSong'
+    title: 'Login'
 })
 </script>
 

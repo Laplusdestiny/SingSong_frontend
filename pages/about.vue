@@ -60,7 +60,7 @@ onMounted(() => {
 });
 
 useHead({
-    title: 'About - SingSong'
+    title: 'About'
 });
 </script>
 
