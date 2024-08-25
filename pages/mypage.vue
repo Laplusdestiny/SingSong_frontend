@@ -38,12 +38,12 @@ const headers = [
 
 const userSongs = ref([]);
 
-async function fetchSongs({ params }) {
+async function fetchSongs(uid) {
     const { rows } = await sql`SELECT songs.title, songs.artist, songs.album
                            FROM mylist
                            LEFT JOIN songs ON mylist.musicid = songs.musicid
-                           WHERE mylist.uid = ${params.uid}`;
-
+                           WHERE mylist.uid = ${uid}`;
+    console.log(rows)
     return rows;
 }
 
@@ -51,7 +51,8 @@ onMounted(async () => {
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
         user.value = JSON.parse(storedUser);
-        userSongs.value = await fetchSongs(user.value);
+        userSongs.value = await fetchSongs(user.value.uid);
+        console.log(userSongs.value)
     }
 });
 
