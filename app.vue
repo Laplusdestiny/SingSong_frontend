@@ -42,6 +42,7 @@
       <NuxtPage />
     </v-main>
   </v-app>
+  <SpeedInsights />
 </template>
 
 <script setup>
@@ -65,7 +66,6 @@ watch(() => localStorage.getItem('auth'), () => {
 });
 
 const logout = () => {
-  // ローカルストレージから認証情報を削除
   localStorage.removeItem('auth');
   localStorage.removeItem('user');
   isAuthenticated.value = false;
@@ -88,7 +88,6 @@ v-main {
   z-index: 1000;
 }
 
-/* iOS Safariのビュー高さに対応するための設定 */
 :root {
   --vh: 1vh;
 }
