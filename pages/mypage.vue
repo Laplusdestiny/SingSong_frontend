@@ -38,13 +38,18 @@ const headers = [
 
 const userSongs = ref([]);
 
-async function fetchSongs(uid) {
-    const { rows } = await sql`SELECT songs.title, songs.artist, songs.album
-                           FROM mylist
-                           LEFT JOIN songs ON mylist.musicid = songs.musicid
-                           WHERE mylist.uid = ${uid}`;
-    console.log(rows)
-    return rows;
+async function fetchSongs(uid: string) {
+    try {
+        const { rows } = await sql`SELECT songs.title, songs.artist, songs.album
+                            FROM mylist
+                            LEFT JOIN songs ON mylist.musicid = songs.musicid
+                            WHERE mylist.uid = ${uid}`;
+        console.log(rows)
+        return rows;
+    } catch (error) {
+        console.error('Database query failed:', error);
+        throw error;
+    }
 }
 
 onMounted(async () => {
